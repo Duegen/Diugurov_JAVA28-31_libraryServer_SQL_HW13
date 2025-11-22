@@ -1,0 +1,25 @@
+create database book_server;
+use book_server;
+
+create table books (
+bookId varchar(36) not null PRIMARY KEY,
+title varchar(40) not null default 'No name',
+author varchar(25) not null default 'Anonimous',
+genre varchar(10) not null default '',
+status varchar(10) not null default 'in_stock',
+year int unsigned not null default 2000
+);
+
+create table readers (
+readerId int unsigned not null default 0 PRIMARY KEY,
+readerName varchar(25) not null default 'Anonimous'
+);
+
+create table books_readers (
+bookId varchar(36) not null,
+readerId int unsigned not null,
+pickDate varchar(10) not null,
+returnDate varchar(10),
+FOREIGN KEY (bookId) REFERENCES books(bookId) ON DELETE CASCADE,
+FOREIGN KEY (readerId) REFERENCES readers(readerId) ON DELETE CASCADE
+);

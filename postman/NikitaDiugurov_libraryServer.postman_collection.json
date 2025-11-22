@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "3bd1edde-76b5-4c04-ae2b-10613218db88",
+		"name": "libraryServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49500476",
+		"_collection_link": "https://nikitadyugurov-9078756.postman.co/workspace/NodeJS~baf53c5a-4449-4e86-a734-fa98b3916627/collection/49500476-3bd1edde-76b5-4c04-ae2b-10613218db88?action=share&source=collection_link&creator=49500476"
+	},
+	"item": [
+		{
+			"name": "books",
+			"item": [
+				{
+					"name": "getAllBooks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBooksByGenre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/books?genre=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"books"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBookByAuthor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/books/author/Tolkien",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"books",
+								"author",
+								"Tolkien"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pickBook",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/books/pick?bookId=59746757-92d8-4fda-952e-4d73fa8242bc&readerId=1&readerName=Piter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"books",
+								"pick"
+							],
+							"query": [
+								{
+									"key": "bookId",
+									"value": "59746757-92d8-4fda-952e-4d73fa8242bc"
+								},
+								{
+									"key": "readerId",
+									"value": "1"
+								},
+								{
+									"key": "readerName",
+									"value": "Piter"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "returnBook",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/books/return?bookId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"books",
+								"return"
+							],
+							"query": [
+								{
+									"key": "bookId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeBook",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "logs",
+			"item": [
+				{
+					"name": "getLogFile",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getLogByDate",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "404",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
