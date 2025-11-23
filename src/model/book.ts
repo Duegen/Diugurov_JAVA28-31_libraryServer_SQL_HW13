@@ -17,6 +17,14 @@ export type Book = {
     quantity?: number,
 }
 
+export type BookEdit = {
+    _id: string,
+    title?: string,
+    author?: string,
+    genre?: BookGenres,
+    year?: number,
+}
+
 export enum BookGenres {
     CLASSIC = 'classic',
     DETECTIVE = 'detective',

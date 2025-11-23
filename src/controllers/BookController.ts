@@ -1,12 +1,12 @@
 import {BookService} from "../service/iBookService.js";
 import {Response, Request} from "express";
-import {Book, BookDto, BookStatus} from "../model/book.js";
+import {Book, BookDto, BookEdit, BookStatus} from "../model/book.js";
 import {convertBookDtoToBook} from "../utils/tools.js";
 import {loggerWinston} from "../winston/logger.js";
-import {bookServiceSql} from "../service/BookServiceImpSql.js";
+import {bookService} from "../database/databaseConfig.js";
 
 export class BookController {
-    private service: BookService = bookServiceSql;
+    private service: BookService = bookService;
 
     addBook = async (req: Request, res: Response): Promise<void> => {
         const dto = req.body as BookDto;
@@ -49,6 +49,13 @@ export class BookController {
         }
     }
 
+    editBook = async (req:Request, res: Response): Promise<void> => {
+        const body = req.body as BookEdit;
+        const result = await this.service.editBook(body);
+        res.status(200).json(result);
+        loggerWinston.info(`book with id '${body._id}' is edited@editBook`)
+    }
+
     removeBook = async (req:Request, res: Response): Promise<void> => {
         const result = await this.service.removeBook(req.query.bookId + "");
         res.status(200).json(result);
@@ -56,6 +63,12 @@ export class BookController {
             loggerWinston.info(`book with id '${req.query.bookId}' is marked as removed@removeBook`)
         else
             loggerWinston.info(`book with id '${req.query.bookId}' is deleted@removeBook`)
+    }
+
+    restoreBook = async (req:Request, res: Response): Promise<void> => {
+        const result = await this.service.restoreBook(req.query.bookId + "");
+        res.status(200).json(result);
+        loggerWinston.info(`book with id '${req.query.bookId}' is restored@restoreBook`)
     }
 
     pickBook =  async (req: Request, res: Response): Promise<void> => {

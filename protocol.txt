@@ -1,5 +1,5 @@
-create database book_server;
-use book_server;
+create database libraryServer;
+use libraryServer;
 
 create table books (
 bookId varchar(36) not null PRIMARY KEY,

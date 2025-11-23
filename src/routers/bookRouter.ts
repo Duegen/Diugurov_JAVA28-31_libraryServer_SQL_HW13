@@ -1,7 +1,7 @@
 import express from "express";
 import {bookController} from "../controllers/BookController.js";
 import {validationBody, validationParams, validationQuery} from "../validation/validation.js";
-import {authorShema, bookDtoShema, genreShema, idShema, picBookShema} from "../joi/joiShema.js";
+import {authorShema, bookDtoShema, bookShema, genreShema, idShema, picBookShema} from "../joi/joiShema.js";
 
 export const bookRouter = express.Router();
 
@@ -14,6 +14,10 @@ bookRouter.get('/authors/:author', validationParams(authorShema), bookController
 bookRouter.post("/", validationBody(bookDtoShema), bookController.addBook);
 
 bookRouter.delete('/', validationQuery(idShema), bookController.removeBook);
+
+bookRouter.patch('/', validationBody(bookShema), bookController.editBook)
+
+bookRouter.patch('/restore', validationQuery(idShema), bookController.restoreBook);
 
 bookRouter.patch("/pick", validationQuery(picBookShema),bookController.pickBook)
 

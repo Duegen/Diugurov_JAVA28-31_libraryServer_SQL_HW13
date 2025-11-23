@@ -33,3 +33,11 @@ export const authorShema = Joi.object({
 export const dateLogShema = Joi.object({
     date: Joi.date().format('DD.MM.YYYY').max('now').required(),
 })
+
+export const bookShema = Joi.object({
+    _id: Joi.string().required(),
+    title: Joi.string().min(2).max(30).optional(),
+    author: Joi.string().min(2).max(30).optional(),
+    genre: Joi.string().valid(...Object.values(BookGenres)).optional(),
+    year: Joi.number().min(1900).max(new  Date().getFullYear()).integer().optional(),
+})

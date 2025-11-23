@@ -2,12 +2,13 @@ import express from 'express';
 import {errorHandler} from "./errorHandler/errorHandler.js";
 import {loggerWinston} from "./winston/logger.js";
 import {apiRouter} from "./routers/apiRouter.js";
+import {PORT} from "./configuration/appConfig.js";
 
 export const launchServer = async () => {
     const app = express();
 
-    const server = app.listen(process.env.PORT, () => {
-        console.log(`Server runs at http://localhost:${process.env.PORT}`)
+    const server = app.listen(PORT, () => {
+        console.log(`Server runs at http://localhost:${PORT}`)
         loggerWinston.warn("server successfully started");
     });
 
