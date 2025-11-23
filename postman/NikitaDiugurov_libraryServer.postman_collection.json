@@ -36,7 +36,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3050/api/books?genre=",
+							"raw": "http://localhost:3050/api/books/genres/fantasy",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -44,13 +44,9 @@
 							"port": "3050",
 							"path": [
 								"api",
-								"books"
-							],
-							"query": [
-								{
-									"key": "genre",
-									"value": ""
-								}
+								"books",
+								"genres",
+								"fantasy"
 							]
 						}
 					},
@@ -62,7 +58,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3050/api/books/author/Tolkien",
+							"raw": "http://localhost:3050/api/books/authors/Tolkien",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -71,7 +67,7 @@
 							"path": [
 								"api",
 								"books",
-								"author",
+								"authors",
 								"Tolkien"
 							]
 						}
@@ -83,6 +79,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Lord of the rings\",\r\n    \"author\": \"Tolkien\",\r\n    \"genre\": \"fantasy\",\r\n    \"year\": 1953\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3050/api/books",
 							"protocol": "http",
@@ -104,7 +109,7 @@
 						"method": "PATCH",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3050/api/books/pick?bookId=59746757-92d8-4fda-952e-4d73fa8242bc&readerId=1&readerName=Piter",
+							"raw": "http://localhost:3050/api/books/pick?bookId=a038a365-cae3-4d5d-aed8-da896499f7b2&readerId=2&readerName=Piter",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -118,11 +123,11 @@
 							"query": [
 								{
 									"key": "bookId",
-									"value": "59746757-92d8-4fda-952e-4d73fa8242bc"
+									"value": "a038a365-cae3-4d5d-aed8-da896499f7b2"
 								},
 								{
 									"key": "readerId",
-									"value": "1"
+									"value": "2"
 								},
 								{
 									"key": "readerName",
@@ -139,7 +144,7 @@
 						"method": "PATCH",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3050/api/books/return?bookId",
+							"raw": "http://localhost:3050/api/books/return?bookId=a038a365-cae3-4d5d-aed8-da896499f7b2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -153,7 +158,7 @@
 							"query": [
 								{
 									"key": "bookId",
-									"value": null
+									"value": "a038a365-cae3-4d5d-aed8-da896499f7b2"
 								}
 							]
 						}
@@ -161,10 +166,46 @@
 					"response": []
 				},
 				{
-					"name": "removeBook",
+					"name": "restoreBook",
 					"request": {
-						"method": "DELETE",
+						"method": "PATCH",
 						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/books/restore?bookId=a038a365-cae3-4d5d-aed8-da896499f7b2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"books",
+								"restore"
+							],
+							"query": [
+								{
+									"key": "bookId",
+									"value": "a038a365-cae3-4d5d-aed8-da896499f7b2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editBook",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"a038a365-cae3-4d5d-aed8-da896499f7b2\",\r\n    \"title\": \"Farenheit 451\",\r\n    \"author\": \"Bradbary\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3050/api/books",
 							"protocol": "http",
@@ -179,6 +220,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "removeBook",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/books?bookId=a038a365-cae3-4d5d-aed8-da896499f7b2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"books"
+							],
+							"query": [
+								{
+									"key": "bookId",
+									"value": "a038a365-cae3-4d5d-aed8-da896499f7b2"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -189,7 +256,19 @@
 					"name": "getLogFile",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/logger",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"logger"
+							]
+						}
 					},
 					"response": []
 				},
@@ -197,7 +276,26 @@
 					"name": "getLogByDate",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3050/api/logger/dates?date=22.11.2025",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3050",
+							"path": [
+								"api",
+								"logger",
+								"dates"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "22.11.2025"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -207,7 +305,19 @@
 			"name": "404",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3050/api/page",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"api",
+						"page"
+					]
+				}
 			},
 			"response": []
 		}
