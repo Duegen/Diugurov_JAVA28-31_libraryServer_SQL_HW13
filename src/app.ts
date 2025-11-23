@@ -4,8 +4,9 @@ import {Pool} from "mysql2/promise";
 import * as mongoose from "mongoose";
 import {Book} from "./model/book.js";
 import {databaseConnect} from "./database/databaseConfig.js";
+import {JsonDB} from "node-json-db";
 
-export const database: mongoose.Model<Book> | Pool = await databaseConnect().then(data => {
+export const database: mongoose.Model<Book> | Pool | JsonDB = await databaseConnect().then(data => {
     launchServer()
         .then(() => {
             loggerWinston.warn("database is successfully connected");

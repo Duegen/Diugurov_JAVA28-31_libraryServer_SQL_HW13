@@ -17,6 +17,7 @@
     "@types/joi": "^17.2.2",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^24.9.1",
+    "@types/node-json-db": "^0.0.1",
     "@types/uuidv4": "^2.0.0",
     "@types/winston": "^2.4.4",
     "rimraf": "^6.0.1",

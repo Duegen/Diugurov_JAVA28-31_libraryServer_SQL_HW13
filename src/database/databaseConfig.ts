@@ -4,6 +4,8 @@ import {mongoConnect} from "./databaseMongoConnect.js";
 import {bookServiceSql} from "../service/BookServiceImpSql.js";
 import {bookServiceMongo} from "../service/BookServiceImpMongo.js";
 import {loggerWinston} from "../winston/logger.js";
+import {JSONConnect} from "./databaseJSONConnect.js";
+import {bookServiceJSON} from "../service/BookServiceJSON.js";
 
 dotenv.config({quiet: true});
 
@@ -25,14 +27,14 @@ switch (process.env.DATABASE_MODE){
     }
     case 'NODE_JSON':{
         loggerWinston.warn("Node JSON database is used");
-        connectFunc = mongoConnect
-        service = bookServiceMongo;
+        connectFunc = JSONConnect
+        service = bookServiceJSON;
         break;
     }
     default:{
         loggerWinston.warn("Node JSON database is used");
-        connectFunc = mongoConnect
-        service = bookServiceMongo;
+        connectFunc = JSONConnect
+        service = bookServiceJSON;
     }
 }
 
