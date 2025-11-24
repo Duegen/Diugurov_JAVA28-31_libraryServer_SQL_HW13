@@ -97,7 +97,9 @@ export class BookServiceImpSql implements BookService {
             if(err instanceof HttpError) throw new HttpError(409, err.message + '@removeBook');
             else throw new Error( err.message + '@removeBook');
         })
-        return Promise.resolve(result as Book);
+        const pickList = await this.formPickList(bookId)
+        const book = {...result, pickList: [...pickList]};
+        return Promise.resolve(book as Book);
     }
 
     async editBook(editData: BookEdit): Promise<Book>{
@@ -127,7 +129,9 @@ export class BookServiceImpSql implements BookService {
             if(err instanceof HttpError) throw new HttpError(409, err.message + '@editBook');
             else throw new Error( err.message + '@editBook');
         })
-        return Promise.resolve(result as Book);
+        const pickList = await this.formPickList(editData._id)
+        const book = {...result, pickList: [...pickList]};
+        return Promise.resolve(book as Book);
     };
 
     async restoreBook(bookId: string): Promise<Book> {
@@ -151,7 +155,9 @@ export class BookServiceImpSql implements BookService {
             if(err instanceof HttpError) throw new HttpError(409, err.message + '@restoreBook');
             else throw new Error( err.message + '@restoreBook');
         })
-        return Promise.resolve(result as Book);
+        const pickList = await this.formPickList(bookId)
+        const book = {...result, pickList: [...pickList]};
+        return Promise.resolve(book as Book);
     }
 
     async pickBook(bookId: string, readerName: string, readerId: number): Promise<void> {
